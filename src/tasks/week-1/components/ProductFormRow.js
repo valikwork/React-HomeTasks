@@ -1,12 +1,26 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import ValidatedInput from './ValidatedInput';
 
 const requiredValidator = value => !value ? 'Required!' : '';
 
 export default class ProductFormRow extends Component {
-    staticdefaultProps = {
+
+    static propTypes = {
+        onSubmit: PropTypes.func.isRequired,
+        product: PropTypes.shape({
+            id: PropTypes.string,
+            title: PropTypes.string,
+            price: PropTypes.string,
+            quantity: PropTypes.string,
+            type: PropTypes.string
+        }).isRequired
+    }
+
+    static defaultProps = {
         product: {}
     }
+
     constructor(props) {
         super(props);
         const { product } = props;
@@ -34,24 +48,32 @@ export default class ProductFormRow extends Component {
             quantity: '',
         })
     }
+    isDisabled() {
+        const { title, type, price, quantity } = this.state;
+        return requiredValidator(title)
+        && requiredValidator(type)
+        && requiredValidator(price)
+        && requiredValidator(quantity)
+    }
     render() {
         const { title, type, price, quantity } = this.state;
+        const disabled = this.isDisabled()
         return (
             <tr>
                 <td>
                     <ValidatedInput validate={requiredValidator} type="text" name='title' value={title} onChange={this.onChangeField}/>
                 </td>
                 <td>
-                    <input type="text" name='type' value={type} onChange={this.onChangeField}/>
+                    <ValidatedInput validate={requiredValidator} type="text" name='type' value={type} onChange={this.onChangeField}/>
                 </td>
                 <td>
-                    <input type="text" name='price' value={price} onChange={this.onChangeField}/>
+                    <ValidatedInput validate={requiredValidator} type="text" name='price' value={price} onChange={this.onChangeField}/>
                 </td>
                 <td>
-                    <input type="text" name='quantity' value={quantity} onChange={this.onChangeField}/>
+                    <ValidatedInput validate={requiredValidator} type="text" name='quantity' value={quantity} onChange={this.onChangeField}/>
                 </td>
                 <td>
-                    <button onClick={this.submitProductForm}>Submit</button>
+                    <button disabled={disabled} onClick={this.submitProductForm}>Submit</button>
                 </td>
             </tr>
         )

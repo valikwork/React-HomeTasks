@@ -7,7 +7,6 @@ export default class AutoFocusInput extends Component {
         this.focusInput = React.createRef();
     }
     componentDidMount() {
-        debugger
         this.focusInput.current.focusOnInput();
     }
     render() {

@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ProductFormRow from './ProductFormRow';
 
 export default class ProductRow extends Component {
-
     state = {
         editMode: false
     }
@@ -37,5 +37,17 @@ export default class ProductRow extends Component {
             </td>
         </tr>
         )
+    }
+    
+    static propTypes = {
+        onRemoveProduct: PropTypes.func.isRequired,
+        onEditProduct: PropTypes.func.isRequired,
+        product: PropTypes.shape({
+            id: PropTypes.string,
+            title: PropTypes.string,
+            price: PropTypes.string,
+            quantity: PropTypes.string,
+            type: PropTypes.string
+        }).isRequired
     }
 }

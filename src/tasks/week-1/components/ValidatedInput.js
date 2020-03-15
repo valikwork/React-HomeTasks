@@ -32,7 +32,7 @@ export default class ValidatedInput extends Component {
         return (
             <div className='validated-input'>
                 <input {...rest} onBlur={this.touchInput} />
-                {error && touched && <div className='error'>Some error</div> }
+                {error && touched && <div className='error'>{error}</div> }
             </div>
         )
     }

@@ -1,16 +1,13 @@
 import React from 'react';
 import './App.css';
-import Week1 from './home-works/week-1/Week1';
-import Cube from './home-works/week-2/Cube';
-import AutoFocusInput from './home-works/week-2/AutoFocusInput';
-
+import Week1 from './tasks/week-1/Week1';
+import Week2 from './tasks/week-2/Week2';
 
 function App() {
   return (
     <div className="App">
       <Week1 />
-      <Cube />
-      <AutoFocusInput />
+      <Week2 />
     </div>
   );
 }

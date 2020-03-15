@@ -14,10 +14,11 @@ export default class Week1 extends Component {
         productsApi
             .fetchProducts()
             .then(products => this.setState({ products, isFetching: false }))
-
+        
+        // example of fetching posts
        fetch('https://jsonplaceholder.typicode.com/posts')
-       .then(response => response.json())
-       .then(data => this.setState({ posts: data }))     
+            .then(response => response.json())
+            .then(data => this.setState({ posts: data }))     
     }
 
     removeProduct = id => {
