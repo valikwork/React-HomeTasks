@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
+import ValidatedInput from './ValidatedInput';
+
+const requiredValidator = value => !value ? 'Required!' : '';
 
 export default class ProductFormRow extends Component {
-    state = {
-        title: '',
-        type: '',
-        price: '',
-        quantity: '',
-        errors: {}
+    staticdefaultProps = {
+        product: {}
+    }
+    constructor(props) {
+        super(props);
+        const { product } = props;
+        this.state = {
+            title: '',
+            type: '',
+            price: '',
+            quantity: '',
+            ...product
+        }
     }
     onChangeField = e => {
         const { name , value} = e.target
@@ -29,7 +39,7 @@ export default class ProductFormRow extends Component {
         return (
             <tr>
                 <td>
-                    <input type="text" name='title' value={title} onChange={this.onChangeField}/>
+                    <ValidatedInput validate={requiredValidator} type="text" name='title' value={title} onChange={this.onChangeField}/>
                 </td>
                 <td>
                     <input type="text" name='type' value={type} onChange={this.onChangeField}/>
@@ -47,3 +57,4 @@ export default class ProductFormRow extends Component {
         )
     }
 }
+

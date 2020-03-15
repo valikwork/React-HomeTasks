@@ -32,18 +32,32 @@ td input {
   color: red;
 }
 
+.cube {
+  width: 200px;
+  height: 200px;
+  transition: .3s ease-out;
+  margin-bottom: 20px;
+}
+
+.cube.red {
+  background-color: red;
+}
+.cube.green {
+  background-color: green;
+}
+
 /* LOADERS */
 .loader,
 .loader:before,
 .loader:after {
-  background: #ffffff;
+  background: #000;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em;
   height: 4em;
 }
 .loader {
-  color: #ffffff;
+  color: #000;
   text-indent: -9999em;
   margin: 88px auto;
   position: relative;

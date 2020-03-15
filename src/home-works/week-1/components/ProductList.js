@@ -1,17 +1,20 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ProductRow from './ProductRow'
 import ProductFormRow from './ProductFormRow'
 
 export default function ProductList({
     products,
     onRemoveProduct,
-    onAddProduct
+    onAddProduct,
+    onEditProduct,
+    color
 }) {
     return (
         <table className='product-table'>
             <thead>
                 <tr>
-                    <td>
+                    <td style={{ color }}>
                         Название
                     </td>
                     <td>
@@ -31,6 +34,7 @@ export default function ProductList({
                 {products.map(product =>
                     <ProductRow
                         onRemoveProduct={onRemoveProduct}
+                        onEditProduct={onEditProduct}
                         key={product.id}
                         product={product}
                     />
@@ -39,4 +43,17 @@ export default function ProductList({
             </tbody>
         </table>
     )
+}
+
+
+ProductList.propTypes = {
+    products: PropTypes.array.isRequired,
+    onRemoveProduct: PropTypes.func.isRequired,
+    onAddProduct: PropTypes.func.isRequired,
+    onEditProduct: PropTypes.func.isRequired,
+    color: PropTypes.string
+}
+
+ProductList.defaultProps = {
+    color: 'red'
 }

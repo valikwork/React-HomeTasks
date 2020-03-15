@@ -1,32 +1,25 @@
 import React, { Component } from 'react'
 import ProductList from './components/ProductList'
+import productsApi from './products-api';
+import ErrorBoundary from './components/ErrorBoundary';
 
 export default class Week1 extends Component {
     state = {
-       products: [
-           {
-            id: '1', 
-            title: 'Samsung Galaxy S10',
-            type: 'device',
-            price: '800$',
-            quantity: '10',
-           },
-           {
-            id: '2', 
-            title: 'IPhone X',
-            type: 'device',
-            price: '600$',
-            quantity: '10',
-           },
-           {
-            id: '3', 
-            title: 'Платье',
-            type: 'clothes',
-            price: '50$',
-            quantity: '5',
-           }
-       ]
+       products: [],
+       isFetching: false
     }
+
+    componentDidMount() {
+        this.setState({ isFetching: true })
+        productsApi
+            .fetchProducts()
+            .then(products => this.setState({ products, isFetching: false }))
+
+       fetch('https://jsonplaceholder.typicode.com/posts')
+       .then(response => response.json())
+       .then(data => this.setState({ posts: data }))     
+    }
+
     removeProduct = id => {
         const { products } = this.state;
         this.setState({ 
@@ -46,14 +39,26 @@ export default class Week1 extends Component {
         })
     }
 
+    editProduct = updatedProduct => {
+        const { products } = this.state;
+        this.setState({
+            products: products.map(product => product.id === updatedProduct.id ? updatedProduct : product)
+        })
+    }
+
     render() {
+        const { isFetching } = this.state;
+        if (isFetching) return <div className='loader'></div>
         return (
             <div className="week1">
-                <ProductList
-                    onAddProduct={this.addProduct}
-                    onRemoveProduct={this.removeProduct}
-                    products={this.state.products} 
-                /> 
+                <ErrorBoundary resolve={() => alert('Help me')}>
+                    <ProductList
+                        onAddProduct={this.addProduct}
+                        onEditProduct={this.editProduct}
+                        onRemoveProduct={this.removeProduct}
+                        products={this.state.products} 
+                    /> 
+                </ErrorBoundary>
             </div>
         )
     }
