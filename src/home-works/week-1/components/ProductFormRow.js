@@ -6,6 +6,7 @@ export default class ProductFormRow extends Component {
         type: '',
         price: '',
         quantity: '',
+        errors: {}
     }
     onChangeField = e => {
         const { name , value} = e.target
