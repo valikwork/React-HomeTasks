@@ -46,8 +46,13 @@ td input {
   background-color: green;
 }
 
+.author-column {
+  position: fixed !important;
+  top: 20px;
+}
+
 /* LOADERS */
-.loader,
+/* .loader,
 .loader:before,
 .loader:after {
   background: #000;
@@ -105,4 +110,4 @@ td input {
     box-shadow: 0 -2em;
     height: 5em;
   }
-}
+} */
