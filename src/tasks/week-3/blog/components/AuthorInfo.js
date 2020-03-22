@@ -15,7 +15,7 @@ export default class AuthorInfo extends Component {
         loading: false
     }
     componentDidMount() {
-        if (this.props.authorInfo) {
+        if (this.props.authorId) {
             this.fetchAuthorInfo();
             this.fetchAlbums();
         }

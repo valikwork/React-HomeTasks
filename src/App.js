@@ -2,13 +2,25 @@ import React from 'react';
 import './App.css';
 import Week1 from './tasks/week-1/Week1';
 import Week2 from './tasks/week-2/Week2';
-import Blog from './tasks/blog/Blog';
-import Example from './tasks/week-3/render-props-example/Example';
+
+import Blog from './tasks/week-3/blog/Blog';
+import Glide from './tasks/week-3/glide/Glide'
+
+import ExampleRenderProps from './tasks/week-3/render-props-example/Example';
+
+import ExampleContext from './tasks/week-3/context/Example';
+import ExampleUseState from './tasks/week-3/hooks/Example-use-state';
+import ExampleUseEffect from './tasks/week-3/hooks/Example-use-effect';
+
+import draggableHoc from './tasks/week-3/render-props-example/draggableHoc';
+import Circle from './tasks/week-3/render-props-example/Circle';
+const DraggedCircle = draggableHoc(Circle);
+
 
 function App() {
   return (
     <div className="App">
-     <Example />
+      <ExampleUseEffect />
     </div>
   );
 }

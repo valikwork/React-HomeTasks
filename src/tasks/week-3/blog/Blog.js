@@ -13,7 +13,7 @@ export default class Blog extends Component {
     }
     render() {
         return (
-            <Grid columns={2}>
+            <Grid columns={3}>
                 <Grid.Row>
                     <Grid.Column>
                         <PostList onSelectPost={this.onSelectPost} />
