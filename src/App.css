@@ -51,6 +51,18 @@ td input {
   top: 20px;
 }
 
+.cirlce {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: red;
+  cursor: grab;
+}
+.cirlce:active {
+  cursor: grabbing
+}
+
 /* LOADERS */
 /* .loader,
 .loader:before,
