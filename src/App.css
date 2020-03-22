@@ -57,9 +57,11 @@ td input {
   height: 100px;
   border-radius: 50%;
   background-color: red;
+}
+.draggable {
   cursor: grab;
 }
-.cirlce:active {
+.draggable:active {
   cursor: grabbing
 }
 
