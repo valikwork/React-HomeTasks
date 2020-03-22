@@ -45,7 +45,6 @@ export default class AuthorInfo extends Component {
         return (
             <Card className='author-column'>
             <Dimmer inverted active={loading}><Loader inverted>Loading...</Loader></Dimmer>
-            {/* <Image src='https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png' wrapped ui={false} /> */}
             <Card.Content>
               <Card.Header>{authorInfo.name}</Card.Header>
               <Card.Meta>
