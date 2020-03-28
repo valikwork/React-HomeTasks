@@ -1,0 +1,19 @@
+.todo-list {
+    width: 500px;
+}
+
+.todo-list .hidden {
+    visibility: hidden;
+}
+
+.todo-item {
+    position: relative;
+}
+
+.todo-list.dark {
+    background-color: #000;
+}
+
+.todo-item.dark .icon {
+ color: #fff;
+}

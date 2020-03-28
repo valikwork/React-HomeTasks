@@ -12,7 +12,7 @@ export default class Example extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='context-example'>
                 <button onClick={() => this.setState({ theme: 'light' })}>Light</button>
                 <button onClick={() => this.setState({ theme: 'dark' })}>Dark</button>
                <ThemeContext.Provider value={this.state.theme}>

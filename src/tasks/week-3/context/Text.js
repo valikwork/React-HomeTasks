@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useCallback } from 'react'
 import Button from './Button'
 import ThemeContext from './ThemeContext'
 
@@ -13,4 +13,25 @@ export default class Text extends Component {
             </div>
         )
     }
+}
+
+
+function TodoItem (props) {
+    const { todo, onEditTodo } = props
+
+    const editTodo = useCallback(
+        () => {
+            fetch({ method: 'PUT', url: `/todo/item/${todo.id}` })
+            .then(res => res.json())
+            .then(data => {
+                onEditTodo(data)
+            })
+        },
+        [todo.id, onEditTodo],
+    )
+    return (
+        <div onClick={editTodo}>
+            ...
+        </div> 
+    )
 }

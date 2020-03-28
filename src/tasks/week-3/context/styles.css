@@ -3,12 +3,12 @@
     width: 200px;
 }
 
-.light { 
+.context-example .light { 
     background-color: lightblue;
     color: black;
 }
 
-.dark { 
+.context-example .dark { 
     background-color: black;
     color: white;
 }
