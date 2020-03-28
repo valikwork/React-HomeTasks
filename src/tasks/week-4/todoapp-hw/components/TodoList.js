@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import InfiniteScroll from 'react-infinite-scroller';
-import { Grid, Icon, List, Container, Dimmer, Loader, Modal, Header } from 'semantic-ui-react';
+import { Grid, Icon, List, Container, Dimmer, Loader } from 'semantic-ui-react';
 import classNames from 'classnames';
 import { useTodosCrud } from '../hooks';
 import ThemeContext from '../contexts/ThemeContext';
@@ -11,7 +11,7 @@ import AddTaskModal from './AddTaskModal';
 const TODOS_COUNT_PER_PAGE = 20;
 
 export default function TodoList() {
-    
+
     const {
         todos,
         isFetching,
