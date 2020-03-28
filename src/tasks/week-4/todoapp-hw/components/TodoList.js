@@ -11,6 +11,7 @@ import AddTaskModal from './AddTaskModal';
 const TODOS_COUNT_PER_PAGE = 20;
 
 export default function TodoList() {
+    
     const {
         todos,
         isFetching,
@@ -20,8 +21,6 @@ export default function TodoList() {
      } = useTodosCrud();
     const [ displayedTodosCount, setDisplayedTodosCount ] = useState(TODOS_COUNT_PER_PAGE);
     const { theme, toggleTheme } = useContext(ThemeContext);
-
-  
 
     return (
         <Grid className={classNames('todo-list', theme)}>
