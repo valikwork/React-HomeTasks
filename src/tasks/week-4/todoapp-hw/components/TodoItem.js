@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useContext } from 'react'
 import classNames from 'classnames'
-import { List, Icon, Button, Dimmer, Loader } from 'semantic-ui-react';
+import { List, Icon, Dimmer, Loader } from 'semantic-ui-react';
 import apiClient from '../api-client';
 import ThemeContext from '../contexts/ThemeContext';
 import TheamedButton from './TheamedButton'
