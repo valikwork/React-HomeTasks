@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFormik } from 'formik';
-import { Form, Button, Input, Select } from 'semantic-ui-react';
+import { Form, Button, Input, Select, Icon } from 'semantic-ui-react';
 import useUsers from '../hooks/useUsers'
 
 const validate = values => {
@@ -32,6 +32,7 @@ export default function AddTodoForm({ onSubmit, onCancel }) {
         onSubmit
       });
      const userOptions = users.map(u => ({ text: u.email, value: u.id })) 
+     const { isSubmitting } = formik;
     return (
         <Form onSubmit={formik.handleSubmit}>
             <Form.Field
@@ -58,7 +59,9 @@ export default function AddTodoForm({ onSubmit, onCancel }) {
             </Form.Field>
             
             <Button basic onClick={onCancel} >Cancel</Button>
-            <Button type='submit' color='green' inverted>Create Task</Button>
+            <Button disabled={isSubmitting} type='submit' color='green' inverted>
+                <Icon loading={isSubmitting} name={isSubmitting ? 'asterisk' : 'checkmark'} /> Create Task
+            </Button>
         </Form>
     )
 }

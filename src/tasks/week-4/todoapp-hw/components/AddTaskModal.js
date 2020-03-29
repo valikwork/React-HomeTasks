@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { Modal, Header, Icon } from 'semantic-ui-react';
+import { Modal, Header, Icon, Dimmer, Loader } from 'semantic-ui-react';
 import AddTodoForm from './AddTodoForm';
 import TheamedButton from './TheamedButton';
 import apiClient from '../api-client';
@@ -23,7 +23,6 @@ export default function AddTaskModal({ onAddTodo }) {
 
     return (
         <Modal
-            loading={isSubmitting}
             open={isModalDisplayed}
             onClose={closeModal}
             onOpen={openModal}

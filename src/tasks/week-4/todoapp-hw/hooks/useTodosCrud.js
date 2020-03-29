@@ -19,7 +19,7 @@ export default function useTodos() {
           setTodos(todos.map(todo => todo.id === updatedTodo.id ? updatedTodo : todo)),
        [todos])
        const handleAddTodo = useCallback(newTodo => {
-           setTodos([newTodo, ...todos])
+           setTodos([{ ...newTodo, id: Date.now() }, ...todos])
        }, [todos])
 
 
