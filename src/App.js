@@ -14,14 +14,16 @@ import ExampleUseState from './tasks/week-3/hooks/Example-use-state';
 import ExampleUseEffect from './tasks/week-3/hooks/Example-use-effect';
 
 import TodoApp from './tasks/week-4/todoapp-hw/TodoApp';
+import UseMemoExample from './tasks/week-4/hooks-examples/use-callback.example'
 
+import BlogV2 from './tasks/week-4/blog-v2/Blog';
 
 
 
 function App() {
   return (
     <div className="App">
-      <TodoApp />
+        <BlogV2 />
     </div>
   );
 }

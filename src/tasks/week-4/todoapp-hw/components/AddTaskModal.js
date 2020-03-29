@@ -6,16 +6,12 @@ import apiClient from '../api-client';
 
 export default function AddTaskModal({ onAddTodo }) {
     const [ isModalDisplayed, toggleModal ] = useState(false);
-    const [ isSubmitting, setSubmitting ] = useState(false);
     const closeModal = useCallback(() => toggleModal(false) ,[])
     const openModal = useCallback(() => toggleModal(true) ,[])
 
     const handleSubmit = useCallback(values => {
-        setSubmitting(true);
         return apiClient.post('/todos', values)
             .then(response => {
-                console.log(response.data);
-                setSubmitting(false);
                 onAddTodo(response.data)
                 closeModal();
             })
