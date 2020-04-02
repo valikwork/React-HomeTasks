@@ -5,3 +5,24 @@
 .page {
     position: relative;
 }
+
+.slick-prev, .slick-next{
+    color: rgba(0,0,0,.4) !important;
+    background: rgba(0,0,0,.4) !important;
+    border-radius: 50%;
+}
+.slick-track{
+    display: flex !important;
+}
+.slick-slide{
+    text-align: center;
+    margin:  0 5px;
+}
+
+.animated-page-wrapper {
+    position: absolute;
+    top: 62px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

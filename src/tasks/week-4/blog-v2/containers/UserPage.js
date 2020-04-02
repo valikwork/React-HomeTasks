@@ -24,30 +24,30 @@ export default function UserPage() {
                     <Card>
                         <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
                         <Card.Content>
-                        <Card.Header>{user.name}</Card.Header>
-                        <Card.Meta>
-                            <span className='email'>{user.email}</span>
-                        </Card.Meta>
-                        <Card.Description>
-                        {user.address.street} {user.address.suite}, {user.address.city}
-                        </Card.Description>
+                            <Card.Header>{user.name}</Card.Header>
+                            <Card.Meta>
+                                <span className='email'>{user.email}</span>
+                            </Card.Meta>
+                            <Card.Description>
+                            {user.address.street} {user.address.suite}, {user.address.city}
+                            </Card.Description>
+                            </Card.Content>
+                            <Card.Content extra>
+                            <a>
+                                <Icon name='user' />
+                                {albums.length} Albums
+                            </a>
+                            </Card.Content>
+                            <Card.Content>
+                            <List>
+                            {albums.map(album => (
+                                <List.Item key={album.id}>
+                                    <Link to={`${url}/albums/${album.id}`}>{album.title}</Link>
+                                </List.Item>
+                            ))}
+                            </List>
                         </Card.Content>
-                        <Card.Content extra>
-                        <a>
-                            <Icon name='user' />
-                            {albums.length} Albums
-                        </a>
-                        </Card.Content>
-                        <Card.Content>
-                        <List>
-                        {albums.map(album => (
-                            <List.Item key={album.id}>
-                                <Link to={`${url}/albums/${album.id}`}>{album.title}</Link>
-                            </List.Item>
-                        ))}
-                        </List>
-                    </Card.Content>
-                </Card>
+                    </Card>
                 </Grid.Column>
                 <Grid.Column>
                     <Switch>
@@ -63,8 +63,6 @@ export default function UserPage() {
                     </Switch>
                 </Grid.Column>
             </Grid>
-          
-            
         </Container>
     )
 }
