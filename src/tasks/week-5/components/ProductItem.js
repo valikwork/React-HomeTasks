@@ -1,14 +1,13 @@
 import React from 'react';
-import connect from '../hoc/connect';
-import {addProduct} from '../redux/actions/productActions';
-import store from '../redux/store';
+import { connect } from 'react-redux';
 import { Card, Image, Button, Grid } from 'semantic-ui-react';
+import { addProduct } from '../redux/actions/productActions';
 
-function ProductItem(props) {
-    const {id, title, description, price, photo} = props.product;
+function ProductItem({product, addToCart}) {
+    const {id, title, description, price, photo} = product;
 
     const saveInCart = () => {
-        store.dispatch(addProduct(id))
+        addToCart(id);
     }
 
 
@@ -34,4 +33,7 @@ function ProductItem(props) {
 }
 
 
-export default ProductItem;
+const mapDispatchToProps = dispatch => ({
+    addToCart: (product) => dispatch(addProduct(product))  
+})
+export default connect(null, mapDispatchToProps)(ProductItem);

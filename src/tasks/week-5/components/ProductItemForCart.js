@@ -1,16 +1,15 @@
 import React from 'react';
-import { deleteProduct } from '../redux/actions/productActions';
-import store from '../redux/store';
 import { Card, Image, Button, Grid } from 'semantic-ui-react';
+import { deleteProduct } from '../redux/actions/productActions';
+import { connect } from 'react-redux';
 
-function ProductItem(props) {
-    const {id, title, description, price, photo} = props.product;
+function ProductItem({product, removeFromCart}) {
+    const {id, title, description, price, photo, quantity} = product;
 
     const deleteFromCart = () => {
-        store.dispatch(deleteProduct(id))
+        removeFromCart(id);
     }
     
-    console.log(store.getState())
     return (
         <Grid.Column>
             <Card>
@@ -25,6 +24,9 @@ function ProductItem(props) {
                     {price}$
                 </Card.Content>
                 <Card.Content extra>
+                    {quantity} items
+                </Card.Content>
+                <Card.Content extra>
                     <Button onClick={deleteFromCart}>Delete</Button>
                 </Card.Content>
             </Card>
@@ -32,5 +34,8 @@ function ProductItem(props) {
     )
 }
 
+const mapDispatchToProps = (dispatch) => ({
+    removeFromCart: (id) => dispatch(deleteProduct(id))
+})
 
-export default ProductItem;
+export default connect(null, mapDispatchToProps)(ProductItem);

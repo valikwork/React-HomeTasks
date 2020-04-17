@@ -3,14 +3,14 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 import store from './tasks/week-5/redux/store';
 import Store from './tasks/week-5/Store';
-import ReduxContext from './tasks/week-5/contexts/reduxContext';
+import { Provider } from 'react-redux';
 
 
 function App() {
   return (
-    <ReduxContext.Provider value={store}>
+    <Provider store={store}>
         <Store />
-    </ReduxContext.Provider>
+    </Provider>
   );
 }
 

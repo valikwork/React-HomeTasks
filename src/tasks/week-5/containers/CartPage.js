@@ -1,41 +1,35 @@
-import React, { useEffect, useState} from 'react';
-import store from '../redux/store';
+import React from 'react';
+import { connect } from 'react-redux';
 import ProductItemForCart from '../components/ProductItemForCart';
 import { Container, Item, Grid } from 'semantic-ui-react';
 
-export default function CartPage(props) {
+function CartPage({productsInCart, total}) {
 
-    const [addedProducts, setAddedProducts ] = useState([])
-    const prodInCart = props.products;
-    const AllProducts = store.getState().products;
-
-    const handleCart = () => {
-        let final = []
-        
-        for (let i = 0; i < prodInCart.length; i++) {
-            for (let j = 0; j < AllProducts.length; j++) {
-                if(prodInCart[i] === AllProducts[j]['id']){
-                    final.push(AllProducts[j]);
-                }
-            }
-        }
-        setAddedProducts(final)
-    }
-   
-    useEffect(() => {
-        handleCart()
-    }, [prodInCart])
-    
-    if(addedProducts.length === 0) return <div>No Products Added to Cart</div>
+    if(productsInCart.length === 0) return <div>No Products Added to Cart</div>
     return (
         <Container>
-            <Item.Group className='users'>
+            <Item.Group className='products'>
                 <Grid columns={4}>
-                    {addedProducts.map(product => {
+                    {productsInCart.map(product => {
                         return <ProductItemForCart key={product.id} product={product} />
                     })}
                 </Grid>
             </Item.Group>
+            
+            <Item.Group className='total'>
+                <Item.Header as='h2'>Total Sum: {total} $</Item.Header>
+            </Item.Group>
+
         </Container>
     )
 }
+
+const mapStateToProps = state => { 
+    return {
+        productsInCart: state.productsInCart,
+        total: state.total
+    }
+}
+
+
+export default connect(mapStateToProps, null)(CartPage);
