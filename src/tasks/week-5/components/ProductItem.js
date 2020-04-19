@@ -1,15 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Card, Image, Button, Grid } from 'semantic-ui-react';
 import { addProduct } from '../redux/actions/productActions';
 
-function ProductItem({product, addToCart}) {
+function ProductItem({product}) {
     const {id, title, description, price, photo} = product;
 
-    const saveInCart = () => {
-        addToCart(id);
-    }
-
+    const dispatch = useDispatch();
 
     return (
         <Grid.Column>
@@ -25,15 +22,11 @@ function ProductItem({product, addToCart}) {
                     {price}$
                 </Card.Content>
                 <Card.Content extra>
-                    <Button onClick={saveInCart}>Add To Cart</Button>
+                    <Button onClick={() => dispatch(addProduct(id))}>Add To Cart</Button>
                 </Card.Content>
             </Card>
         </Grid.Column>
     )
 }
 
-
-const mapDispatchToProps = dispatch => ({
-    addToCart: (product) => dispatch(addProduct(product))  
-})
-export default connect(null, mapDispatchToProps)(ProductItem);
+export default ProductItem;

@@ -6,12 +6,12 @@ import { BrowserRouter as Router, Switch, NavLink, Route } from 'react-router-do
 import CartPage from './containers/CartPage';
 import ProductsPage from './containers/ProductsPage';
 import HomePage from './containers/HomePage';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import musik from './components/OST.mp3';
 
 
-function Store({state}) {
-        console.log(state)
+function Store() {
+        const productsInCart = useSelector(state => state.productsInCart)
         return (
                 <Container>
                     <Router>
@@ -20,7 +20,7 @@ function Store({state}) {
                         </Header>
                         <Menu>
                             <NavLink to='/products' className='item' activeClassName='active-nav'>Products</NavLink>
-                            <NavLink to='/cart' className='right item' activeClassName='active-nav'><FontAwesomeIcon icon={faShoppingCart}/>Cart {state.productsInCart.length}</NavLink>
+                            <NavLink to='/cart' className='right item' activeClassName='active-nav'><FontAwesomeIcon icon={faShoppingCart}/>Cart {productsInCart.length}</NavLink>
                         </Menu>
                         <Switch>
                             <Route path='/' exact>
@@ -42,7 +42,7 @@ function Store({state}) {
     // }
 }
 
-const mapStateToProps = state => ({
-    state: state
-})
-export default connect(mapStateToProps, null)(Store);
+// const mapStateToProps = state => ({
+//     state: state
+// })
+export default Store;

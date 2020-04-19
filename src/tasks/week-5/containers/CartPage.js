@@ -1,9 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ProductItemForCart from '../components/ProductItemForCart';
 import { Container, Item, Grid } from 'semantic-ui-react';
 
-function CartPage({productsInCart, total}) {
+function CartPage() {
+
+    const productsInCart = useSelector(state => state.productsInCart);
+    const total = useSelector(state => state.total);
 
     if(productsInCart.length === 0) return <div>No Products Added to Cart</div>
     return (
@@ -24,12 +27,5 @@ function CartPage({productsInCart, total}) {
     )
 }
 
-const mapStateToProps = state => { 
-    return {
-        productsInCart: state.productsInCart,
-        total: state.total
-    }
-}
 
-
-export default connect(mapStateToProps, null)(CartPage);
+export default CartPage;
