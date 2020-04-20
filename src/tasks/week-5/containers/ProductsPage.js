@@ -18,10 +18,4 @@ function ProductsPage() {
     )
 }
 
-// const mapStateToProps = state => { 
-//     return {
-//         products: state.products
-//     }
-// }
-
 export default ProductsPage;

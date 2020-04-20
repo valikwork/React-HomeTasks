@@ -39,10 +39,6 @@ function Store() {
                     </audio> */}
                 </Container>
         )
-    // }
 }
 
-// const mapStateToProps = state => ({
-//     state: state
-// })
 export default Store;
