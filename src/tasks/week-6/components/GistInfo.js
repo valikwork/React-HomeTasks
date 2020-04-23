@@ -9,28 +9,29 @@ export default function GistInfo() {
     const selectedGist = useSelector(state => state.selectedGist);
     const selectedGistContent = useSelector(state => state.selectedGistContent);
     const { isLoading, gist } = selectedGistContent;
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    const store = useSelector(state => state)
 
     useEffect(() => {
-        if(selectedGist){
-            dispatch(fetchSelectedGist(selectedGist))
+        if(Object.keys(selectedGist).length > 0){
+            dispatch(fetchSelectedGist(selectedGist.gistUrl))
         }
     }, [selectedGist])
 
     const syntaxHighlighterWrapper = (content) => {
         return (
-            <SyntaxHighlighter>
+            <SyntaxHighlighter style={docco}>
                 {content}
             </SyntaxHighlighter>
         )
     }
-    
+    //console.log(store);
     return (
         <Container>
-            
                 {isLoading ? 
                 <h1>Loading...</h1> : 
-                typeof gist === 'string' ? syntaxHighlighterWrapper(gist) : 'Gist is an object'
+                gist === '' ? 'Choose a Gist' : typeof gist === 'string' ? syntaxHighlighterWrapper(gist) : syntaxHighlighterWrapper(JSON.stringify(gist, null, 4))
                 }
         </Container>
     )

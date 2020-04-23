@@ -1,11 +1,25 @@
 import { combineReducers } from 'redux';
-import { FETCH_GISTS_REQUEST, FETCH_GISTS_SUCCESS, FETCH_GISTS_ERROR, SELECT_GIST, FETCH_SELECTED_GIST_REQUEST, FETCH_SELECTED_GIST_SUCCESS, FETCH_SELECTED_GIST_ERROR } from './actions';
+import { FETCH_GISTS_REQUEST, 
+        FETCH_GISTS_SUCCESS, 
+        FETCH_GISTS_ERROR, 
+        SELECT_GIST, 
+        FETCH_SELECTED_GIST_REQUEST, 
+        FETCH_SELECTED_GIST_SUCCESS, 
+        FETCH_SELECTED_GIST_ERROR ,
+        FETCH_GIST_OWNER_REQUEST,
+        FETCH_GIST_OWNER_SUCCESS,
+        FETCH_GIST_OWNER_ERROR
+    } from './actions';
 
 
-function selectedGistReducer(state = '', action) {
+function selectedGistReducer(state = {}, action) {
     switch(action.type) {
         case SELECT_GIST:
-            return action.payload;
+            let wholeGistInfo = {
+                gistUrl: action.payload.raw_url,
+                ownerLogin: action.payload.ownerLogin
+            }
+            return wholeGistInfo;
         default: 
             return state;    
     }
@@ -67,10 +81,39 @@ function selectedGistsContentReducer(state = {
     }
 }
 
+function gistOwnerReducer(state = {
+    isLoading: false,
+    info: {},
+    error: ''
+}, action) {
+    switch(action.type) {
+        case FETCH_GIST_OWNER_REQUEST:
+            return {
+                ...state,
+                error: null,
+                isLoading: true
+            }
+        case FETCH_GIST_OWNER_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                info: action.payload
+            }
+        case FETCH_GIST_OWNER_ERROR:   
+            return {
+                isLoading: false,
+                info: [],
+                error: action.payload
+            }
+        default: return state;   
+    }
+}
+
 const rootReducer = combineReducers({
     selectedGist: selectedGistReducer,
     gists: gistsReducer,
-    selectedGistContent: selectedGistsContentReducer
+    selectedGistContent: selectedGistsContentReducer,
+    gistOwner: gistOwnerReducer
 })
 
 export default rootReducer;

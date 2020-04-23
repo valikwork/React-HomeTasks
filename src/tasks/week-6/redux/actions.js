@@ -8,6 +8,10 @@ export const FETCH_SELECTED_GIST_REQUEST = 'FETCH_SELECTED_GIST_REQUEST';
 export const FETCH_SELECTED_GIST_SUCCESS = 'FETCH_SELECTED_GIST_SUCCESS';
 export const FETCH_SELECTED_GIST_ERROR = 'FETCH_SELECTED_GIST_ERROR';
 
+export const FETCH_GIST_OWNER_REQUEST = 'FETCH_GIST_OWNER_REQUEST';
+export const FETCH_GIST_OWNER_SUCCESS = 'FETCH_GIST_OWNER_SUCCESS';
+export const FETCH_GIST_OWNER_ERROR = 'FETCH_GIST_OWNER_ERROR';
+
 export const SELECT_GIST = 'SELECT_GIST'
 
 
@@ -41,7 +45,7 @@ export function fetchAllGists(){
     }
 }
 
-const fetchSelectedGistRequests = () => ({
+const fetchSelectedGistRequest = () => ({
     type: FETCH_SELECTED_GIST_REQUEST
 });
 
@@ -57,10 +61,30 @@ const fetchSelectedGistError = error => ({
 
 export function fetchSelectedGist(url){
     return dispatch => {
-        dispatch(fetchSelectedGistRequests())
+        dispatch(fetchSelectedGistRequest())
         axios.get(url)
             .then(res => dispatch(fetchSelectedGistSuccess(res)))
             .catch(err => dispatch(fetchSelectedGistError(err)))
     }
 }
 
+const fetchGistOwnerRequest = () => ({
+    type: FETCH_GIST_OWNER_REQUEST
+})
+const fetchGistOwnerSuccess = response => ({
+    type: FETCH_GIST_OWNER_SUCCESS,
+    payload: response.data
+})
+const fetchGistOwnerError = error => ({
+    type: FETCH_GIST_OWNER_SUCCESS,
+    payload: error.message
+})
+
+export function fetchGistOwner(ownerLogin){
+    return dispatch => {
+        dispatch(fetchGistOwnerRequest())
+        axios.get(`https://api.github.com/users/${ownerLogin}`)
+            .then(res => dispatch(fetchGistOwnerSuccess(res)))
+            .catch(err => dispatch(fetchGistOwnerError(err)))
+    }
+}
