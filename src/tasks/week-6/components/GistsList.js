@@ -5,7 +5,6 @@ import { fetchAllGists, selectGist } from '../redux/actions';
 
 export default function GistsList() {
     const gists = useSelector(state => state.gists);
-    const state = useSelector(state => state)
     const { isLoading, items } = gists;
     const dispatch = useDispatch();
 

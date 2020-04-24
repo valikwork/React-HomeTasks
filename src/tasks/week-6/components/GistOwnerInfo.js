@@ -14,7 +14,7 @@ export default function GistOwnerInfo() {
             dispatch(fetchGistOwner(selectedGist.ownerLogin))
         }
     }, [selectedGist])
-    console.log(gistOwner);
+    
     return (
         <Container>
             {Object.keys(selectedGist).length === 0 ?

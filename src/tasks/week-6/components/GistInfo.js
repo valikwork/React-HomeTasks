@@ -11,8 +11,6 @@ export default function GistInfo() {
     const { isLoading, gist } = selectedGistContent;
     const dispatch = useDispatch();
 
-    const store = useSelector(state => state)
-
     useEffect(() => {
         if(Object.keys(selectedGist).length > 0){
             dispatch(fetchSelectedGist(selectedGist.gistUrl))
@@ -26,7 +24,7 @@ export default function GistInfo() {
             </SyntaxHighlighter>
         )
     }
-    //console.log(store);
+    
     return (
         <Container>
                 {isLoading ? 
