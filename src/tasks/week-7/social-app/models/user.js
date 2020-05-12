@@ -26,7 +26,6 @@ const UserSchema = mongoose.Schema({
 UserSchema.methods.signIn = function (password) {
     return bcrypt.compare(password, this.password)
             .then(() => jwt.sign( { _id: this._id }, JWT_SECRET, { expiresIn: '24h' } ))
-    
 }
 
 UserSchema.statics.verify = function(token) {

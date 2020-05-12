@@ -1,3 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/social-network', {useNewUrlParser: true, useUnifiedTopology: true});
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_PATH, {useNewUrlParser: true, useUnifiedTopology: true});
 
